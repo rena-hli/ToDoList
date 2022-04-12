@@ -1,13 +1,10 @@
 export default class Model {
   constructor() {
-    this.counter = 0;
+    this.arr = [];
   }
 
-  incrementCounter() {
-    this.counter++;
+  addElement(task) {
+    this.arr.push(task)
   }
 
-  getCurrentCounter() {
-    return this.counter;
-  }
 }

@@ -6,10 +6,18 @@ export default class Controller {
 
   init() {
     this.view.init();
-    this.view.mainButton.addEventListener("click", () => {
-      this.model.incrementCounter();
-      const newCounter = this.model.getCurrentCounter();
-      this.view.updateCounter(newCounter);
+    this.view.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      if (data.get("tasks") !== "") {
+        this.model.addElement(data.get("tasks"));
+        this.view.addElement(data.get("tasks"));
+        this.view.emptyInput();
+      }
     });
+  }
+
+  renderElement() {
+    this.arr.forEach((el) => el);
   }
 }
