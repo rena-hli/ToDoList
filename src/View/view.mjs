@@ -1,6 +1,7 @@
 export default class View {
   constructor() {
     this.addButton = null;
+    this.sortImg = null;
     this.form = null;
     this.ul = null;
     this.input = null;
@@ -86,7 +87,7 @@ export default class View {
   createImg(props) {
     const img = document.createElement("img");
 
-    props.text && (img.innerText = props.text);
+    props.src && (img.src = props.src);
     props.class && (img.className = props.class);
     props.id && (img.id = props.id);
 
@@ -94,8 +95,10 @@ export default class View {
   }
 
   addElement(task) {
+    const elementWrapper = this.createDiv({class: 'list-element-wrapper'})
     const li = this.createLi({ class: "list-elements", text: task });
-    this.ul.appendChild(li);
+    elementWrapper.appendChild(li)
+    this.ul.appendChild(elementWrapper);
   }
 
   emptyInput() {
@@ -105,27 +108,45 @@ export default class View {
   renderToDo() {
     const container = this.createDiv({ class: "container" });
     const yellowDiv = this.createDiv({ class: "yellow-div" });
-    const heading = this.createParagraph({ class: "to-do", text: "To-Do" });
+    const heading = this.createParagraph({
+      class: "to-do",
+      text: "To-Do List",
+    });
+
+    const sortImgWrapper = this.createDiv({ class: "sort-down-wrapper" });
+    this.sortImg = this.createImg({
+      id: "sort-down",
+      src: "./assets/images/Group 74.svg",
+    });
+
     this.form = this.createForm({ class: "form" });
+    const inputWrapper = this.createDiv({ class: "tasks-wrapper" });
     this.input = this.createInput({
       class: "tasks",
       type: "text",
       name: "tasks",
-      value: "A cup of coffee",
     });
+
+    const buttonWrapper = this.createDiv({ class: "button-wrapper" });
     this.addButton = this.createButton({
       class: "add-button",
       text: "Добавить",
     });
+
+    const listWrapper = this.createDiv({class: 'list-wrapper'})
     this.ul = this.createUl({ class: "list" });
 
-    
     container.appendChild(yellowDiv);
     container.appendChild(heading);
-    this.form.appendChild(this.input);
-    this.form.appendChild(this.addButton);
+    container.appendChild(sortImgWrapper);
+    sortImgWrapper.appendChild(this.sortImg);
+    inputWrapper.appendChild(this.input);
+    this.form.appendChild(inputWrapper);
+    listWrapper.appendChild(this.ul);
+    this.form.appendChild(listWrapper);
+    buttonWrapper.appendChild(this.addButton);
+    this.form.appendChild(buttonWrapper);
     container.appendChild(this.form);
-    container.appendChild(this.ul);
     this.root.appendChild(container);
   }
 }

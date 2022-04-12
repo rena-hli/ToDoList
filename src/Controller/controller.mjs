@@ -15,9 +15,10 @@ export default class Controller {
         this.view.emptyInput();
       }
     });
+
+    this.view.sortImg.addEventListener('click', (e) => {
+      this.model.sortAlphabet()
+    })
   }
 
-  renderElement() {
-    this.arr.forEach((el) => el);
-  }
 }
