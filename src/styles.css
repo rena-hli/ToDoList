@@ -6,13 +6,14 @@
 }
 
 #root {
-  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 70px 0px;
 }
 
 .container {
+  overflow: auto;
   font-family: "Roboto", sans-serif;
   width: 337px;
   border: 1px solid #c4c4c4;
