@@ -1,7 +1,7 @@
 export default class View {
   constructor() {
     this.addButton = null;
-    this.sortImg = null;
+    this.sortImgDown = null;
     this.form = null;
     this.ul = null;
     this.input = null;
@@ -94,15 +94,49 @@ export default class View {
     return img;
   }
 
-  addElement(task) {
-    const elementWrapper = this.createDiv({class: 'list-element-wrapper'})
-    const li = this.createLi({ class: "list-elements", text: task });
-    elementWrapper.appendChild(li)
-    this.ul.appendChild(elementWrapper);
-  }
+  // addElement(task) {
+  //   const elementWrapper = this.createDiv({ class: "list-element-wrapper" });
+  //   const li = this.createLi({ class: "list-elements", text: task });
+  //   elementWrapper.appendChild(li);
+  //   this.ul.appendChild(elementWrapper);
+  // }
+
+  // renderTasks(array) {
+  //   this.ul.innerHTML = "";
+  //   array.forEach((el) => {
+  //     const elementWrapper = this.createDiv({ class: "list-element-wrapper" });
+  //     const li = this.createLi({ class: "list-elements", text: el });
+  //     const deleteIcon = this.createImg({
+  //       id: "delete",
+  //       src: "./assets/images/Group 77.svg",
+  //     });
+  //     deleteIcon.addEventListener('click',(e) => {
+        
+  //     })
+  //     elementWrapper.appendChild(li);
+  //     elementWrapper.appendChild(deleteIcon);
+  //     this.ul.appendChild(elementWrapper);
+  //   });
+  // }
 
   emptyInput() {
     this.input.value = "";
+  }
+
+  defaultDescending() {
+    this.sortImgDown.src = "./assets/images/Group 74.svg"
+  }
+
+  defaultAscending() {
+    this.sortImgDown.src = "./assets/images/Group 90.svg"
+  }
+
+  changeDescendingColor() {
+    this.sortImgDown.src = "./assets/images/Group 73.svg"
+  }
+
+  changeAscendingColor() {
+    this.sortImgDown.src = "./assets/images/Group 91.svg"
   }
 
   renderToDo() {
@@ -114,7 +148,7 @@ export default class View {
     });
 
     const sortImgWrapper = this.createDiv({ class: "sort-down-wrapper" });
-    this.sortImg = this.createImg({
+    this.sortImgDown = this.createImg({
       id: "sort-down",
       src: "./assets/images/Group 74.svg",
     });
@@ -133,13 +167,13 @@ export default class View {
       text: "Добавить",
     });
 
-    const listWrapper = this.createDiv({class: 'list-wrapper'})
+    const listWrapper = this.createDiv({ class: "list-wrapper" });
     this.ul = this.createUl({ class: "list" });
 
     container.appendChild(yellowDiv);
     container.appendChild(heading);
     container.appendChild(sortImgWrapper);
-    sortImgWrapper.appendChild(this.sortImg);
+    sortImgWrapper.appendChild(this.sortImgDown);
     inputWrapper.appendChild(this.input);
     this.form.appendChild(inputWrapper);
     listWrapper.appendChild(this.ul);

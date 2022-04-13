@@ -4,18 +4,18 @@ export default class Model {
   }
 
   addElement(task) {
-    this.arr.push(task)
+    this.arr.push(task);
   }
 
-  sortAlphabet() {
-    return this.arr.sort((a,b) => {
-      if(a < b) {
-        return -1
-      } else if(a > b) {
-        return 1
-      }else {
-        return 0
-      }
-    })
+  deleteTask(selectedIndex) {
+    this.arr = this.arr.filter((el, index) => index !== selectedIndex);
+  }
+
+  sortTasksDescending() {
+    this.arr = this.arr.sort((a, b) => (a < b ? -1 : 1));
+  }
+
+  sortTasksAscending() {
+    this.arr = this.arr.sort((a, b) => (a > b ? -1 : 1));
   }
 }
