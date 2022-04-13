@@ -1,6 +1,7 @@
 export default class View {
   constructor() {
     this.addButton = null;
+    this.circleButton = null;
     this.sortImgDown = null;
     this.form = null;
     this.ul = null;
@@ -99,11 +100,11 @@ export default class View {
   }
 
   changeDeleteIcon(icon) {
-    icon.src = "./assets/images/Group 70.svg"
+    icon.src = "./assets/images/Group 70.svg";
   }
 
   defaultDeleteIcon(icon) {
-    icon.src = "./assets/images/Group 77.svg"
+    icon.src = "./assets/images/Group 77.svg";
   }
 
   defaultDescending() {
@@ -150,12 +151,15 @@ export default class View {
       text: "Добавить",
     });
 
+    this.circleButton = this.createButton({ id: "circle-button", text: "+" });
+
     const listWrapper = this.createDiv({ class: "list-wrapper" });
     this.ul = this.createUl({ class: "list" });
 
     sortImgWrapper.appendChild(this.sortImgDown);
     inputWrapper.appendChild(this.input);
     listWrapper.appendChild(this.ul);
+    buttonWrapper.appendChild(this.circleButton);
     buttonWrapper.appendChild(this.addButton);
 
     this.form.appendChild(inputWrapper);

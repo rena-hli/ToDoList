@@ -11,9 +11,10 @@
   justify-content: center;
   align-items: center;
 }
+
 .container {
   font-family: "Roboto", sans-serif;
-  width: 336px;
+  width: 337px;
   border: 1px solid #c4c4c4;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -103,21 +104,44 @@
 }
 
 .button-wrapper {
+  position: relative;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+#circle-button {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: white;
+  background: #aa68fe;
+  border: 0;
+  border-radius: 71px;
+  left: 94px;
+  top: 19px;
+  z-index: 1;
+}
+
 .add-button {
   cursor: pointer;
   width: 150px;
   height: 42px;
-  background: #833ae0;
+  background: #9953f1;
   color: white;
   border: none;
   border-radius: 70px;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
+  padding-left: 15px;
+}
+
+.add-button:hover {
+  background: #833ae0;
 }

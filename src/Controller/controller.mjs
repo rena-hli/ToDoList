@@ -6,34 +6,12 @@ export default class Controller {
 
   init() {
     this.view.init();
-    this.view.form.addEventListener("submit", (e) => {
-      e.preventDefault();
+    this.submit();
+    this.sortOnClick();
+    this.sortIconHover();
+  }
 
-      const data = new FormData(e.target);
-      if (data.get("tasks") !== "") {
-        this.model.addElement(data.get("tasks"));
-        this.view.emptyInput();
-        this.renderTasks();
-
-        this.view.sortImgDown.addEventListener("click", (e) => {
-          this.model.sortTasksDescending();
-          this.view.defaultDescending();
-          e.target.classList.toggle("sorted-descending");
-          if (e.target.className !== "sorted-descending") {
-            this.model.sortTasksAscending();
-            this.view.changeDescendingColor();
-            this.view.defaultAscending();
-          } else {
-            this.model.sortTasksDescending();
-            this.view.changeAscendingColor();
-            this.view.defaultDescending();
-          }
-          this.renderTasks();
-        });
-      }
-    });
-
-
+  sortIconHover() {
     this.view.sortImgDown.addEventListener("mouseover", (e) => {
       if (e.target.className !== "sorted-descending") {
         this.view.changeDescendingColor();
@@ -47,6 +25,33 @@ export default class Controller {
         this.view.defaultDescending();
       } else {
         this.view.defaultAscending();
+      }
+    });
+  }
+
+  sortOnClick() {
+    this.view.sortImgDown.addEventListener("click", (e) => {
+      e.target.classList.toggle("sorted-descending");
+      if (e.target.className !== "sorted-descending") {
+        this.model.sortTasksAscending();
+        this.view.changeDescendingColor();
+      } else {
+        this.model.sortTasksDescending();
+        this.view.changeAscendingColor();
+      }
+      this.renderTasks();
+    });
+  }
+
+  submit() {
+    this.view.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const data = new FormData(e.target);
+      if (data.get("tasks") !== "") {
+        this.model.addElement(data.get("tasks"));
+        this.view.emptyInput();
+        this.renderTasks();
       }
     });
   }
@@ -69,13 +74,13 @@ export default class Controller {
         this.renderTasks();
       });
 
-      deleteIcon.addEventListener('mouseover',() => {
-        this.view.changeDeleteIcon(deleteIcon)
-      })
+      deleteIcon.addEventListener("mouseover", () => {
+        this.view.changeDeleteIcon(deleteIcon);
+      });
 
-      deleteIcon.addEventListener('mouseout',() => {
-        this.view.defaultDeleteIcon(deleteIcon)
-      })
+      deleteIcon.addEventListener("mouseout", () => {
+        this.view.defaultDeleteIcon(deleteIcon);
+      });
 
       elementWrapper.appendChild(li);
       elementWrapper.appendChild(deleteIcon);
