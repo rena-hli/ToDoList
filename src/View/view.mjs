@@ -94,49 +94,32 @@ export default class View {
     return img;
   }
 
-  // addElement(task) {
-  //   const elementWrapper = this.createDiv({ class: "list-element-wrapper" });
-  //   const li = this.createLi({ class: "list-elements", text: task });
-  //   elementWrapper.appendChild(li);
-  //   this.ul.appendChild(elementWrapper);
-  // }
-
-  // renderTasks(array) {
-  //   this.ul.innerHTML = "";
-  //   array.forEach((el) => {
-  //     const elementWrapper = this.createDiv({ class: "list-element-wrapper" });
-  //     const li = this.createLi({ class: "list-elements", text: el });
-  //     const deleteIcon = this.createImg({
-  //       id: "delete",
-  //       src: "./assets/images/Group 77.svg",
-  //     });
-  //     deleteIcon.addEventListener('click',(e) => {
-        
-  //     })
-  //     elementWrapper.appendChild(li);
-  //     elementWrapper.appendChild(deleteIcon);
-  //     this.ul.appendChild(elementWrapper);
-  //   });
-  // }
-
   emptyInput() {
     this.input.value = "";
   }
 
+  changeDeleteIcon(icon) {
+    icon.src = "./assets/images/Group 70.svg"
+  }
+
+  defaultDeleteIcon(icon) {
+    icon.src = "./assets/images/Group 77.svg"
+  }
+
   defaultDescending() {
-    this.sortImgDown.src = "./assets/images/Group 74.svg"
+    this.sortImgDown.src = "./assets/images/Group 74.svg";
   }
 
   defaultAscending() {
-    this.sortImgDown.src = "./assets/images/Group 90.svg"
+    this.sortImgDown.src = "./assets/images/Group 90.svg";
   }
 
   changeDescendingColor() {
-    this.sortImgDown.src = "./assets/images/Group 73.svg"
+    this.sortImgDown.src = "./assets/images/Group 73.svg";
   }
 
   changeAscendingColor() {
-    this.sortImgDown.src = "./assets/images/Group 91.svg"
+    this.sortImgDown.src = "./assets/images/Group 91.svg";
   }
 
   renderToDo() {
@@ -170,17 +153,20 @@ export default class View {
     const listWrapper = this.createDiv({ class: "list-wrapper" });
     this.ul = this.createUl({ class: "list" });
 
+    sortImgWrapper.appendChild(this.sortImgDown);
+    inputWrapper.appendChild(this.input);
+    listWrapper.appendChild(this.ul);
+    buttonWrapper.appendChild(this.addButton);
+
+    this.form.appendChild(inputWrapper);
+    this.form.appendChild(listWrapper);
+    this.form.appendChild(buttonWrapper);
+
     container.appendChild(yellowDiv);
     container.appendChild(heading);
     container.appendChild(sortImgWrapper);
-    sortImgWrapper.appendChild(this.sortImgDown);
-    inputWrapper.appendChild(this.input);
-    this.form.appendChild(inputWrapper);
-    listWrapper.appendChild(this.ul);
-    this.form.appendChild(listWrapper);
-    buttonWrapper.appendChild(this.addButton);
-    this.form.appendChild(buttonWrapper);
     container.appendChild(this.form);
+
     this.root.appendChild(container);
   }
 }

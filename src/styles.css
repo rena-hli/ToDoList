@@ -54,9 +54,6 @@
   height: 15px;
 }
 
-/* .form {
-} */
-
 .tasks-wrapper {
   display: flex;
   justify-content: center;
@@ -70,6 +67,7 @@
   border: 1px solid #c4c4c4;
   box-sizing: border-box;
   border-radius: 10px;
+  padding-left: 4px;
 }
 
 .list-wrapper {
@@ -87,10 +85,10 @@
   align-items: center;
   border: 1px solid #c4c4c4;
   width: 286px;
-  /* height: 40px; */
   height: fit-content;
   box-sizing: border-box;
   border-radius: 10px;
+  padding: 10px;
   margin: 10px 0px;
 }
 
