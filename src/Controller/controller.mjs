@@ -6,6 +6,7 @@ export default class Controller {
 
   init() {
     this.view.init();
+    this.dragAndDrop();
     this.submit();
     this.sortOnClick();
     this.sortIconHover();
@@ -56,12 +57,27 @@ export default class Controller {
     });
   }
 
+  dragAndDrop() {
+    const draggableDivs = document.querySelectorAll(".draggable");
+    
+    draggableDivs.forEach((e) => {
+      e.addEventListener("click", () => e.classList.add("dragging"));
+      console.log(e.target);
+    });
+    
+    draggableDivs.forEach((e) => {
+      e.addEventListener("dragend", () => e.classList.remove("dragging"));
+    });
+    
+    this.renderTasks();
+  }
+
   renderTasks() {
     this.view.ul.innerHTML = "";
 
     this.model.arr.forEach((el, index) => {
       const elementWrapper = this.view.createDiv({
-        class: "list-element-wrapper",
+        class: "list-element-wrapper draggable",
       });
       const li = this.view.createLi({ class: "list-elements", text: el });
       const deleteIcon = this.view.createImg({

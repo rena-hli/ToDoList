@@ -100,6 +100,10 @@
   width: 250px;
 }
 
+.dragging {
+  cursor: move;
+}
+
 #delete {
   cursor: pointer;
 }
