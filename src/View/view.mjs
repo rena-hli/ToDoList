@@ -1,6 +1,8 @@
 export default class View {
   constructor() {
     this.addButton = null;
+    this.circleButton = null;
+    this.sortImgDown = null;
     this.form = null;
     this.ul = null;
     this.input = null;
@@ -86,46 +88,89 @@ export default class View {
   createImg(props) {
     const img = document.createElement("img");
 
-    props.text && (img.innerText = props.text);
+    props.src && (img.src = props.src);
     props.class && (img.className = props.class);
     props.id && (img.id = props.id);
 
     return img;
   }
 
-  addElement(task) {
-    const li = this.createLi({ class: "list-elements", text: task });
-    this.ul.appendChild(li);
-  }
-
   emptyInput() {
     this.input.value = "";
+  }
+
+  changeDeleteIcon(icon) {
+    icon.src = "./assets/images/Group 70.svg";
+  }
+
+  defaultDeleteIcon(icon) {
+    icon.src = "./assets/images/Group 77.svg";
+  }
+
+  defaultDescending() {
+    this.sortImgDown.src = "./assets/images/Group 74.svg";
+  }
+
+  defaultAscending() {
+    this.sortImgDown.src = "./assets/images/Group 90.svg";
+  }
+
+  changeDescendingColor() {
+    this.sortImgDown.src = "./assets/images/Group 73.svg";
+  }
+
+  changeAscendingColor() {
+    this.sortImgDown.src = "./assets/images/Group 91.svg";
   }
 
   renderToDo() {
     const container = this.createDiv({ class: "container" });
     const yellowDiv = this.createDiv({ class: "yellow-div" });
-    const heading = this.createParagraph({ class: "to-do", text: "To-Do" });
+    const heading = this.createParagraph({
+      class: "to-do",
+      text: "To-Do List",
+    });
+
+    const sortImgWrapper = this.createDiv({ class: "sort-down-wrapper" });
+    this.sortImgDown = this.createImg({
+      id: "sort-down",
+      src: "./assets/images/Group 74.svg",
+    });
+
     this.form = this.createForm({ class: "form" });
+    const inputWrapper = this.createDiv({ class: "tasks-wrapper" });
     this.input = this.createInput({
       class: "tasks",
       type: "text",
       name: "tasks",
-      value: "A cup of coffee",
     });
+
+    const buttonWrapper = this.createDiv({ class: "button-wrapper" });
     this.addButton = this.createButton({
       class: "add-button",
       text: "Добавить",
     });
+
+    this.circleButton = this.createButton({ id: "circle-button", text: "+" });
+
+    const listWrapper = this.createDiv({ class: "list-wrapper" });
     this.ul = this.createUl({ class: "list" });
 
-    
+    sortImgWrapper.appendChild(this.sortImgDown);
+    inputWrapper.appendChild(this.input);
+    listWrapper.appendChild(this.ul);
+    buttonWrapper.appendChild(this.circleButton);
+    buttonWrapper.appendChild(this.addButton);
+
+    this.form.appendChild(inputWrapper);
+    this.form.appendChild(listWrapper);
+    this.form.appendChild(buttonWrapper);
+
     container.appendChild(yellowDiv);
     container.appendChild(heading);
-    this.form.appendChild(this.input);
-    this.form.appendChild(this.addButton);
+    container.appendChild(sortImgWrapper);
     container.appendChild(this.form);
-    container.appendChild(this.ul);
+
     this.root.appendChild(container);
   }
 }
