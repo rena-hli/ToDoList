@@ -92,7 +92,6 @@ export default class Controller {
 
       inputElement.addEventListener("keyup", (e) => {
         this.model.changeTask(index, e.target.value);
-        console.log(this.model.arr);
       });
 
       deleteIcon.addEventListener("click", () => {
