@@ -59,16 +59,16 @@ export default class Controller {
 
   dragAndDrop() {
     const draggableDivs = document.querySelectorAll(".draggable");
-    
+
     draggableDivs.forEach((e) => {
       e.addEventListener("click", () => e.classList.add("dragging"));
       console.log(e.target);
     });
-    
+
     draggableDivs.forEach((e) => {
       e.addEventListener("dragend", () => e.classList.remove("dragging"));
     });
-    
+
     this.renderTasks();
   }
 
@@ -79,10 +79,20 @@ export default class Controller {
       const elementWrapper = this.view.createDiv({
         class: "list-element-wrapper draggable",
       });
-      const li = this.view.createLi({ class: "list-elements", text: el });
+      const li = this.view.createLi({ class: "list-elements" });
+      const inputElement = this.view.createInput({
+        class: "input-elements",
+        type: "text",
+        value: el,
+      });
       const deleteIcon = this.view.createImg({
         id: "delete",
         src: "./assets/images/Group 77.svg",
+      });
+
+      inputElement.addEventListener("keyup", (e) => {
+        this.model.changeTask(index, e.target.value);
+        console.log(this.model.arr);
       });
 
       deleteIcon.addEventListener("click", () => {
@@ -98,6 +108,7 @@ export default class Controller {
         this.view.defaultDeleteIcon(deleteIcon);
       });
 
+      li.appendChild(inputElement);
       elementWrapper.appendChild(li);
       elementWrapper.appendChild(deleteIcon);
       this.view.ul.appendChild(elementWrapper);

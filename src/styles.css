@@ -16,11 +16,16 @@
   overflow: auto;
   font-family: "Roboto", sans-serif;
   width: 337px;
+  max-height: 400px;
   border: 1px solid #c4c4c4;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .yellow-div {
@@ -87,17 +92,20 @@
   align-items: center;
   border: 1px solid #c4c4c4;
   width: 286px;
-  height: fit-content;
   box-sizing: border-box;
   border-radius: 10px;
   padding: 10px;
   margin: 10px 0px;
 }
 
-.list-elements {
+.input-elements {
+  border: 0;
   text-align: center;
   overflow-wrap: break-word;
   width: 250px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 0px 2px;
 }
 
 .dragging {

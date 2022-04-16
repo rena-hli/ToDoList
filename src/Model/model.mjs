@@ -4,7 +4,7 @@ export default class Model {
   }
 
   addElement(task) {
-    this.arr.push(task);
+    this.arr = [...this.arr, task];
   }
 
   deleteTask(selectedIndex) {
@@ -12,10 +12,14 @@ export default class Model {
   }
 
   sortTasksDescending() {
-    this.arr = this.arr.sort((a, b) => (a < b ? -1 : 1));
+    this.arr.sort((a, b) => (a.toLowerCase() < b.toLowerCase() ? -1 : 1));
   }
 
   sortTasksAscending() {
-    this.arr = this.arr.sort((a, b) => (a > b ? -1 : 1));
+    this.arr.sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? -1 : 1));
+  }
+
+  changeTask(index, task) {
+    this.arr[index] = task;
   }
 }

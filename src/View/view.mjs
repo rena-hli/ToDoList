@@ -5,7 +5,7 @@ export default class View {
     this.sortImgDown = null;
     this.form = null;
     this.ul = null;
-    this.input = null
+    this.input = null;
     this.root = document.getElementById("root");
   }
 
