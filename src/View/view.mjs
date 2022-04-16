@@ -38,6 +38,7 @@ export default class View {
     props.text && (div.innerText = props.text);
     props.class && (div.className = props.class);
     props.id && (div.id = props.id);
+    props.draggable && (div.draggable = props.draggable);
 
     return div;
   }
@@ -156,7 +157,7 @@ export default class View {
     this.ul = this.createUl({ class: "list" });
 
     this.addButton.appendChild(this.circleButton);
-    
+
     sortImgWrapper.appendChild(this.sortImgDown);
     inputWrapper.appendChild(this.input);
     listWrapper.appendChild(this.ul);

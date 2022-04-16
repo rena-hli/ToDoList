@@ -6,7 +6,7 @@ export default class Controller {
 
   init() {
     this.view.init();
-    this.dragAndDrop();
+    // this.dragAndDrop();
     this.submit();
     this.sortOnClick();
     this.sortIconHover();
@@ -33,6 +33,7 @@ export default class Controller {
   sortOnClick() {
     this.view.sortImgDown.addEventListener("click", (e) => {
       e.target.classList.toggle("sorted-descending");
+
       if (e.target.className !== "sorted-descending") {
         this.model.sortTasksAscending();
         this.view.changeDescendingColor();
@@ -59,17 +60,51 @@ export default class Controller {
 
   dragAndDrop() {
     const draggableDivs = document.querySelectorAll(".draggable");
+    const container = document.querySelector(".list");
 
     draggableDivs.forEach((e) => {
-      e.addEventListener("dragstart", () => e.classList.add("dragging"));
-      console.log(e.target);
+      e.addEventListener("dragstart", () => {
+        e.classList.add("dragging");
+      });
     });
 
     draggableDivs.forEach((e) => {
-      e.addEventListener("dragend", () => e.classList.remove("dragging"));
+      e.addEventListener("dragend", () => {
+        e.classList.remove("dragging");
+      });
     });
 
-    this.renderTasks();
+    container.addEventListener("dragover", (event) => {
+      event.preventDefault();
+      const afterElement = getDragAfterElement(container, event.clientY);
+      const draggable = document.querySelector(".dragging");
+
+      if (afterElement == null) {
+        container.appendChild(draggable);
+      } else {
+        container.insertBefore(draggable, afterElement);
+      }
+    });
+
+    function getDragAfterElement(container, y) {
+      const draggableElements = [
+        ...container.querySelectorAll("draggable:not(.dragging)"),
+      ];
+
+      return draggableElements.reduce(
+        (closest, child) => {
+          const box = child.getBoundingClientRect();
+          const offset = y - box.top - box.height / 2;
+
+          if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+          } else {
+            return closest;
+          }
+        },
+        { offset: Number.NEGATIVE_INFINITY }
+      ).element;
+    }
   }
 
   renderTasks() {
@@ -78,6 +113,7 @@ export default class Controller {
     this.model.arr.forEach((el, index) => {
       const elementWrapper = this.view.createDiv({
         class: "list-element-wrapper draggable",
+        draggable: "true",
       });
       const li = this.view.createLi({ class: "list-elements" });
       const inputElement = this.view.createInput({
@@ -114,5 +150,6 @@ export default class Controller {
 
       this.view.ul.appendChild(elementWrapper);
     });
+    this.dragAndDrop();
   }
 }
