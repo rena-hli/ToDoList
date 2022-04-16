@@ -12,11 +12,11 @@ export default class Model {
   }
 
   sortTasksDescending() {
-    this.arr.sort((a, b) => (a < b ? -1 : 1));
+    this.arr.sort((a, b) => (a.toLowerCase() < b.toLowerCase() ? -1 : 1));
   }
 
   sortTasksAscending() {
-    this.arr.sort((a, b) => (a > b ? -1 : 1));
+    this.arr.sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? -1 : 1));
   }
 
   changeTask(index, task) {

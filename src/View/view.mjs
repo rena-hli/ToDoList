@@ -151,15 +151,15 @@ export default class View {
       text: "Добавить",
     });
 
-    this.circleButton = this.createButton({ id: "circle-button", text: "+" });
-
+    this.circleButton = this.createDiv({ id: "circle-button", text: "+" });
     const listWrapper = this.createDiv({ class: "list-wrapper" });
     this.ul = this.createUl({ class: "list" });
 
+    this.addButton.appendChild(this.circleButton);
+    
     sortImgWrapper.appendChild(this.sortImgDown);
     inputWrapper.appendChild(this.input);
     listWrapper.appendChild(this.ul);
-    buttonWrapper.appendChild(this.circleButton);
     buttonWrapper.appendChild(this.addButton);
 
     this.form.appendChild(inputWrapper);

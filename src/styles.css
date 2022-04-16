@@ -15,7 +15,7 @@
 .container {
   font-family: "Roboto", sans-serif;
   width: 337px;
-  max-height: 400px;
+  max-height: 500px;
   border: 1px solid #c4c4c4;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -79,7 +79,7 @@
 .list-wrapper {
   display: flex;
   justify-content: center;
-  max-height: 150px;
+  max-height: 250px;
 }
 
 .list {

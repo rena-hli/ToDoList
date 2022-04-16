@@ -61,7 +61,7 @@ export default class Controller {
     const draggableDivs = document.querySelectorAll(".draggable");
 
     draggableDivs.forEach((e) => {
-      e.addEventListener("click", () => e.classList.add("dragging"));
+      e.addEventListener("dragstart", () => e.classList.add("dragging"));
       console.log(e.target);
     });
 
@@ -108,8 +108,10 @@ export default class Controller {
       });
 
       li.appendChild(inputElement);
+
       elementWrapper.appendChild(li);
       elementWrapper.appendChild(deleteIcon);
+
       this.view.ul.appendChild(elementWrapper);
     });
   }
